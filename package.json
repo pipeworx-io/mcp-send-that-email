@@ -1,0 +1,20 @@
+{
+  "name": "@pipeworx/mcp-send-that-email",
+  "version": "0.1.0",
+  "description": "send-that-email MCP — wraps StupidAPIs (requires X-API-Key)",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "keywords": ["mcp", "mcp-server", "model-context-protocol", "pipeworx", "send-that-email"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pipeworx-io/mcp-send-that-email"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}
