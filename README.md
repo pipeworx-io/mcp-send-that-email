@@ -77,3 +77,13 @@ The gateway picks the right tool and fills the arguments automatically.
 ## License
 
 MIT
+
+## No MCP client? Call it over HTTP
+
+```bash
+curl -X POST https://gateway.pipeworx.io/v1/tools/send_that_email_analyze \
+  -H 'Content-Type: application/json' \
+  -d '{"content":"I'\''ve been thinking about our conversation yesterday and I don'\''t appreciate how you dismissed my ideas without hearing me out. Maybe next time you could actually listen before making decisions.","recipient_type":"boss","time_since_writing":15,"drunk":false}'
+```
+
+No account needed for the first calls. Inspect any tool: `GET https://gateway.pipeworx.io/v1/tools/send_that_email_analyze`. Find one: `POST https://gateway.pipeworx.io/v1/tools/search_packs` with `{"query":"..."}`.
