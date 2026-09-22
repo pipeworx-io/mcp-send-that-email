@@ -1,8 +1,8 @@
 # mcp-send-that-email
 
-send-that-email MCP — wraps StupidAPIs (requires X-API-Key)
+send-that-email MCP — wraps StupidAPIs (keyless — no credential needed)
 
-Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1476+ live data sources.
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1663+ live data sources.
 
 ## Tools
 
@@ -54,9 +54,45 @@ directly, instead of just this one's:
 }
 ```
 
-Both URLs reach the same gateway and the same 1476+ data sources. The
+Both URLs reach the same gateway and the same 1663+ data sources. The
 only difference is which pack's tools are listed **directly**; `ask_pipeworx`
 reaches all of them from either one.
+
+## No MCP client? Call it over HTTP
+
+```bash
+curl -X POST https://gateway.pipeworx.io/v1/tools/send_that_email_analyze \
+  -H 'Content-Type: application/json' \
+  -d '{"content":"I'\''ve been thinking about our conversation yesterday and I don'\''t appreciate how you dismissed my ideas without hearing me out. Maybe next time you could actually listen before making decisions.","recipient_type":"boss","time_since_writing":15,"drunk":false}'
+```
+
+No account needed for the first calls. Inspect any tool: `GET https://gateway.pipeworx.io/v1/tools/send_that_email_analyze`. Find one: `POST https://gateway.pipeworx.io/v1/tools/search_packs` with `{"query":"..."}`.
+
+## Standalone (no gateway account)
+
+This package also runs as a local stdio MCP server — no Pipeworx account, no
+gateway round-trip:
+
+```json
+{
+  "mcpServers": {
+    "send-that-email": {
+      "command": "npx",
+      "args": ["-y", "@pipeworx/mcp-send-that-email"]
+    }
+  }
+}
+```
+
+Or run it directly to confirm it starts:
+
+```bash
+npx -y @pipeworx/mcp-send-that-email
+```
+
+It speaks MCP over stdin/stdout and answers `initialize`/`tools/list`/`tools/call`
+for **only** this pack's tools — none of the shared meta-tools the gateway
+connection above adds. Same source, same tools, no ask_pipeworx routing.
 
 ## Using with ask_pipeworx
 
@@ -77,13 +113,3 @@ The gateway picks the right tool and fills the arguments automatically.
 ## License
 
 MIT
-
-## No MCP client? Call it over HTTP
-
-```bash
-curl -X POST https://gateway.pipeworx.io/v1/tools/send_that_email_analyze \
-  -H 'Content-Type: application/json' \
-  -d '{"content":"I'\''ve been thinking about our conversation yesterday and I don'\''t appreciate how you dismissed my ideas without hearing me out. Maybe next time you could actually listen before making decisions.","recipient_type":"boss","time_since_writing":15,"drunk":false}'
-```
-
-No account needed for the first calls. Inspect any tool: `GET https://gateway.pipeworx.io/v1/tools/send_that_email_analyze`. Find one: `POST https://gateway.pipeworx.io/v1/tools/search_packs` with `{"query":"..."}`.
