@@ -636,9 +636,7 @@ function collapse(s: string): string {
   return s.replace(/\s+/g, ' ').trim();
 }
 /**
- * send-that-email MCP — wraps StupidAPIs (keyless — no credential needed)
- *
- * Analyze whether you should send that email. Evaluates passive aggression, regret
+ * send-that-email MCP — wraps StupidAPIs, keyless: analyze whether you should send that email, evaluating passive aggression, regret probability, and a send/don't-send recommendation (weighted toward no).
  */
 
 

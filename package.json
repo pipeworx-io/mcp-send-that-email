@@ -1,7 +1,7 @@
 {
   "name": "@pipeworx/mcp-send-that-email",
-  "version": "0.1.1",
-  "description": "send-that-email MCP — wraps StupidAPIs (keyless — no credential needed)",
+  "version": "0.1.2",
+  "description": "send-that-email MCP — wraps StupidAPIs, keyless: analyze whether you should send that email, evaluating passive aggression, regret probability, and a send/don't-send recommendation (weighted toward no).",
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -24,5 +24,9 @@
   "devDependencies": {
     "typescript": "^5.9.3",
     "@cloudflare/workers-types": "^4.20260405.1"
+  },
+  "pipeworx": {
+    "sourceHash": "v1-e2b1522d42e764699ce3d3e9de37b8a65a482c04991a33c84dada65b35d0dc5c",
+    "sourceCommit": "00c836ddeaecbdd581dcfb0fb1842efea104006e"
   }
 }
